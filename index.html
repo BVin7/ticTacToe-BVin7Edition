@@ -15,17 +15,21 @@
 
 <body>
     <header>
-        <h1>Tic Tac Toe</h1>
+        <h1>Tic Tac Toe !</h1>
         <h3>BVin7 Edition</h3>
     </header>
     <main>
         <section class="players-section">
-            <label for="player-one">Player 1</label>
+            <label for="player-one">Player 1 (Marker O)</label>
             <input type="text" id="player-one">
-            <label for="player-two">Player 2</label>
+            <label for="player-two">Player 2 (Marker X)</label>
             <input type="text" id="player-two">
+            <button type="button" id="submit-players-button">Start!</button>
         </section>
-        <section class="squares-section">
+        <section class="player-turn-section delete-section">
+            <h4 id="player-turn"></h4>
+        </section>
+        <section class="squares-section delete-section">
             <button type="button" class="squares" id="square-one"></button>
             <button type="button" class="squares" id="square-two"></button>
             <button type="button" class="squares" id="square-three"></button>

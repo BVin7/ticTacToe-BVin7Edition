@@ -3,6 +3,9 @@
     --black: rgb(3, 1, 21);
     --dark-gray: rgb(0, 0, 28);
     --dark-blue: rgb(6, 6, 70);
+    --yellow: rgb(255, 255, 0);
+    --platinum: rgb(229, 228, 226);
+    --vanilla: rgb(243, 229, 171);
 
     /* font */
     --main-font: 'Indie Flower', cursive;
@@ -16,7 +19,7 @@
 
 body {
     background: linear-gradient(0deg, var(--black) 0%, var(--dark-gray) 50%, var(--dark-blue) 100%);
-    color: aquamarine;
+    color: var(--platinum);
     font-family: var(--main-font);
     font-size: 1rem;
     font-weight: 700;
@@ -26,6 +29,19 @@ body {
 header, 
 footer {
     text-align: center;
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+h3 {
+    font-size: 2rem;
+    color: var(--vanilla);
+}
+
+h4 {
+    font-size: 2rem;
 }
 
 main {
@@ -38,42 +54,66 @@ main {
 .players-section {
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
+}
+
+.players-section > label {
+    font-size: 2rem;
+    color: var(--yellow);
+    margin: 2rem 0rem .5rem 0rem;
+}
+
+.players-section > input {
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    padding: .3rem;
+}
+
+.players-section > input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#submit-players-button {
+    background-color: var(--yellow);
+    font-family: var(--main-font);
+    border: none;
+    border-radius: 1.5rem;
+    font-size: 2rem;
+    padding: .5rem 1rem;
+    margin-top: 3rem;
+}
+
+#submit-players-button:hover {
+    background-color: var(--platinum);
+}
+
+#submit-players-button:active {
+    background-color: var(--black);
+    color: var(--platinum);
+}
+
+.player-turn-section {
+    color: var(--yellow);
 }
 
 .squares-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    border: .5rem solid black;
     border-radius: .5rem;
 }
 
 .squares {
-    padding: 7rem;
-    border: none;
+    font-size: 8.8rem;
+    font-family: var(--main-font);
+    min-width: 210px;
+    min-height: 210px;
 }
 
-#square-one,
-#square-four,
-#square-seven {
-    border-right: .7rem solid black;
-}
-
-#square-three,
-#square-six,
-#square-nine {
-    border-left: .7rem solid black;
-}
-
-#square-one,
-#square-two,
-#square-three {
-    border-bottom: .7rem solid black;
-}
-
-#square-seven,
-#square-eight,
-#square-nine {
-    border-top: .7rem solid black;
+.delete-section {
+    display: none;
 }
