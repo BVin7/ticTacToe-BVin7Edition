@@ -4,6 +4,7 @@
     --dark-gray: rgb(0, 0, 28);
     --dark-blue: rgb(6, 6, 70);
     --yellow: rgb(255, 255, 0);
+    --green: rgb(76, 187, 23);
     --platinum: rgb(229, 228, 226);
     --vanilla: rgb(243, 229, 171);
 
@@ -77,27 +78,32 @@ main {
     box-shadow: none;
 }
 
-#submit-players-button {
+.buttons {
     background-color: var(--yellow);
     font-family: var(--main-font);
     border: none;
     border-radius: 1.5rem;
     font-size: 2rem;
     padding: .5rem 1rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
-#submit-players-button:hover {
+.buttons:hover {
     background-color: var(--platinum);
 }
 
-#submit-players-button:active {
+.buttons:active {
     background-color: var(--black);
     color: var(--platinum);
 }
 
 .player-turn-section {
     color: var(--yellow);
+}
+
+.new-match-section {
+    display: flex;
+    gap: 3rem;
 }
 
 .squares-section {
@@ -112,6 +118,22 @@ main {
     font-family: var(--main-font);
     min-width: 210px;
     min-height: 210px;
+    border: .1rem solid var(--black);
+}
+
+.squares:disabled {
+    background-color: var(--platinum);
+    color: var(--black);
+}
+
+.highlighted-squares {
+    background-color: var(--platinum);
+    color: var(--platinum);
+}
+
+.highlighted-squares:disabled {
+    background-color: var(--green);
+    color: var(--black);
 }
 
 .delete-section {
