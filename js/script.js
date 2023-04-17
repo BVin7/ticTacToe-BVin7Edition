@@ -1,19 +1,26 @@
 //GLOBAL VARIABLES SECTION
-const playersSection = document.querySelector(".players-section");
+const playersInputSection = document.querySelector(".players-input-section");
 const submitPlayersButton = document.getElementById("submit-players-button");
 const playerOneInput = document.getElementById("player-one");
 const playerTwoInput = document.getElementById("player-two");
+const playerOneName = document.getElementById("player-one-name");
+const playerTwoName = document.getElementById("player-two-name");
+const playerOneScore = document.getElementById("player-one-score");
+const playerTwoScore = document.getElementById("player-two-score");
+const playerOneWinningMessage = document.getElementById("player-one-winning-message");
+const playerTwoWinningMessage = document.getElementById("player-two-winning-message");
+let drawManager = 0;
 let playerOrder = 1;
 let playerOne = "";
 let playerTwo = "";
 const playerTurnSection = document.querySelector(".player-turn-section");
-const playerTurn = document.getElementById("player-turn");
+const playerTurnMessage = document.getElementById("player-turn-message");
 const newMatchSection = document.querySelector(".new-match-section");
 const newMatchButton = document.getElementById("new-match-button");
 const newPlayersButton = document.getElementById("new-players-button");
 const markerOne = "X";
 const markerTwo = "O";
-const squaresSection = document.querySelector(".squares-section");
+const gameBoardSection = document.querySelector(".gameboard-section");
 const squares = document.querySelectorAll(".squares");
 const playerOneMarkedSquares = [];
 const playerTwoMarkedSquares = [];
@@ -21,11 +28,13 @@ const allMarkedSquares = [];
 
 //CODE EXECUTION SECTION
 submitPlayersButton.addEventListener("click", () => {
-	if (playerOneInput.value === "" && playerTwoInput.value === "") {
+	if (playerOneInput.value === "" || playerTwoInput.value === "") {
 		alert("Please, identify players 1 and 2!");
 	} else {
 		playerOne = playerOneInput.value;
 		playerTwo = playerTwoInput.value;
+		playerOneName.innerText = playerOneInput.value;
+		playerTwoName.innerText = playerTwoInput.value;
 		playerOneInput.value = "";
 		playerTwoInput.value = "";
 		showGameBoard();
@@ -108,22 +117,24 @@ newMatchButton.addEventListener("click", () => {
 });
 
 newPlayersButton.addEventListener("click", () => {
+	playerOneScore.innerText = 0;
+	playerTwoScore.innerText = 0;
 	createNewMatch();
-	showPlayersSection();
+	showPlayersInputSection();
 });
 
 //FUNCTIONS SECTION
 function showGameBoard() {
-	playersSection.classList.add("delete-section");
-	playerTurnSection.classList.remove("delete-section");
-	squaresSection.classList.remove("delete-section");
+	playersInputSection.classList.add("hidden-section");
+	playerTurnSection.classList.remove("hidden-section");
+	gameBoardSection.classList.remove("hidden-section");
 };
 
 function switchPlayer() {
 	if (playerOrder === 1) {
-		playerTurn.innerText = `${playerOne}'s turn!`;
+		playerTurnMessage.innerText = `${playerOne}'s turn!`;
 	} else if (playerOrder === 2) {
-		playerTurn.innerText = `${playerTwo}'s turn!`;
+		playerTurnMessage.innerText = `${playerTwo}'s turn!`;
 	};
 };
 
@@ -141,207 +152,206 @@ function placeMarker(square, squareIndex) {
 		square.disabled = true;
 		playerOrder = 1;
 	};
-	console.log({ playerOneMarkedSquares, playerTwoMarkedSquares, allMarkedSquares });
-};
-
-function compareNumbersAndSortThem(a, b) {
-	return a - b;
 };
 
 function checkIfPlayerOneWon() {
 	//HORIZONTAL COMBOS
 	if (playerOneMarkedSquares.includes(0) && playerOneMarkedSquares.includes(1) && playerOneMarkedSquares.includes(2)) {
-		alert(`${playerOne} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-one" || square.id === "square-two" || square.id === "square-three") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerOneScore.innerText++;
+		playerOneWinningMessage.innerText = `${playerOne} WON !`;
 		showNewMatchSection();
 
 	} else if (playerOneMarkedSquares.includes(3) && playerOneMarkedSquares.includes(4) && playerOneMarkedSquares.includes(5)) {
-		alert(`${playerOne} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-four" || square.id === "square-five" || square.id === "square-six") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerOneScore.innerText++;
+		playerOneWinningMessage.innerText = `${playerOne} WON !`;
 		showNewMatchSection();
 
 	} else if (playerOneMarkedSquares.includes(6) && playerOneMarkedSquares.includes(7) && playerOneMarkedSquares.includes(8)) {
-		alert(`${playerOne} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-seven" || square.id === "square-eight" || square.id === "square-nine") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerOneScore.innerText++;
+		playerOneWinningMessage.innerText = `${playerOne} WON !`;
 		showNewMatchSection();
 	};
 
 	//VERTICAL COMBOS
 	if (playerOneMarkedSquares.includes(0) && playerOneMarkedSquares.includes(3) && playerOneMarkedSquares.includes(6)) {
-		alert(`${playerOne} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-one" || square.id === "square-four" || square.id === "square-seven") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerOneScore.innerText++;
+		playerOneWinningMessage.innerText = `${playerOne} WON !`;
 		showNewMatchSection();
 
 	} else if (playerOneMarkedSquares.includes(1) && playerOneMarkedSquares.includes(4) && playerOneMarkedSquares.includes(7)) {
-		alert(`${playerOne} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-two" || square.id === "square-five" || square.id === "square-eight") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerOneScore.innerText++;
+		playerOneWinningMessage.innerText = `${playerOne} WON !`;
 		showNewMatchSection();
 
 	} else if (playerOneMarkedSquares.includes(2) && playerOneMarkedSquares.includes(5) && playerOneMarkedSquares.includes(8)) {
-		alert(`${playerOne} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-three" || square.id === "square-six" || square.id === "square-nine") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerOneScore.innerText++;
+		playerOneWinningMessage.innerText = `${playerOne} WON !`;
 		showNewMatchSection();
 	};
 
 	//DIAGONAL COMBOS
 	if (playerOneMarkedSquares.includes(0) && playerOneMarkedSquares.includes(4) && playerOneMarkedSquares.includes(8)) {
-		alert(`${playerOne} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-one" || square.id === "square-five" || square.id === "square-nine") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerOneScore.innerText++;
+		playerOneWinningMessage.innerText = `${playerOne} WON !`;
 		showNewMatchSection();
 
 	} else if (playerOneMarkedSquares.includes(2) && playerOneMarkedSquares.includes(4) && playerOneMarkedSquares.includes(6)) {
-		alert(`${playerOne} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-three" || square.id === "square-five" || square.id === "square-seven") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerOneScore.innerText++;
+		playerOneWinningMessage.innerText = `${playerOne} WON !`;
 		showNewMatchSection();
+	} else {
+		drawManager++;
 	};
 };
 
 function checkIfPlayerTwoWon() {
 	//HORIZONTAL COMBOS
 	if (playerTwoMarkedSquares.includes(0) && playerTwoMarkedSquares.includes(1) && playerTwoMarkedSquares.includes(2)) {
-		alert(`${playerTwo} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-one" || square.id === "square-two" || square.id === "square-three") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerTwoScore.innerText++;
+		playerTwoWinningMessage.innerText = `${playerTwo} WON !`;
 		showNewMatchSection();
 
 	} else if (playerTwoMarkedSquares.includes(3) && playerTwoMarkedSquares.includes(4) && playerTwoMarkedSquares.includes(5)) {
-		alert(`${playerTwo} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-four" || square.id === "square-five" || square.id === "square-six") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerTwoScore.innerText++;
+		playerTwoWinningMessage.innerText = `${playerTwo} WON !`;
 		showNewMatchSection();
 
 	} else if (playerTwoMarkedSquares.includes(6) && playerTwoMarkedSquares.includes(7) && playerTwoMarkedSquares.includes(8)) {
-		alert(`${playerTwo} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-seven" || square.id === "square-eight" || square.id === "square-nine") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerTwoScore.innerText++;
+		playerTwoWinningMessage.innerText = `${playerTwo} WON !`;
 		showNewMatchSection();
 	};
 
 	//VERTICAL COMBOS
 	if (playerTwoMarkedSquares.includes(0) && playerTwoMarkedSquares.includes(3) && playerTwoMarkedSquares.includes(6)) {
-		alert(`${playerTwo} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-one" || square.id === "square-four" || square.id === "square-seven") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerTwoScore.innerText++;
+		playerTwoWinningMessage.innerText = `${playerTwo} WON !`;
 		showNewMatchSection();
 
 	} else if (playerTwoMarkedSquares.includes(1) && playerTwoMarkedSquares.includes(4) && playerTwoMarkedSquares.includes(7)) {
-		alert(`${playerTwo} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-two" || square.id === "square-five" || square.id === "square-eight") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerTwoScore.innerText++;
+		playerTwoWinningMessage.innerText = `${playerTwo} WON !`;
 		showNewMatchSection();
 
 	} else if (playerTwoMarkedSquares.includes(2) && playerTwoMarkedSquares.includes(5) && playerTwoMarkedSquares.includes(8)) {
-		alert(`${playerTwo} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-three" || square.id === "square-six" || square.id === "square-nine") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerTwoScore.innerText++;
+		playerTwoWinningMessage.innerText = `${playerTwo} WON !`;
 		showNewMatchSection();
 	};
 
 	//DIAGONAL COMBOS
 	if (playerTwoMarkedSquares.includes(0) && playerTwoMarkedSquares.includes(4) && playerTwoMarkedSquares.includes(8)) {
-		alert(`${playerTwo} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-one" || square.id === "square-five" || square.id === "square-nine") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerTwoScore.innerText++;
+		playerTwoWinningMessage.innerText = `${playerTwo} WON !`;
 		showNewMatchSection();
-		
+
 	} else if (playerTwoMarkedSquares.includes(2) && playerTwoMarkedSquares.includes(4) && playerTwoMarkedSquares.includes(6)) {
-		alert(`${playerTwo} Ganhou!`);
 		squares.forEach((square) => {
 			if (square.id === "square-three" || square.id === "square-five" || square.id === "square-seven") {
-				console.log(square);
 				square.classList.add("highlighted-squares");
 			};
 			square.disabled = true;
 		});
+		playerTwoScore.innerText++;
+		playerTwoWinningMessage.innerText = `${playerTwo} WON !`;
 		showNewMatchSection();
+	} else {
+		drawManager++;
 	};
 };
 
 function checkIfTheresADraw() {
-	if (allMarkedSquares.length >= 8) {
+	if (allMarkedSquares.length === 9 && drawManager === 18) {
 		alert("Draw!");
 		squares.forEach((square) => {
 			square.disabled = true;
@@ -351,8 +361,8 @@ function checkIfTheresADraw() {
 };
 
 function showNewMatchSection() {
-	playerTurnSection.classList.add("delete-section");
-	newMatchSection.classList.remove("delete-section");
+	playerTurnSection.classList.add("hidden-section");
+	newMatchSection.classList.remove("hidden-section");
 };
 
 function createNewMatch() {
@@ -364,16 +374,18 @@ function createNewMatch() {
 	playerOneMarkedSquares.splice(0, playerOneMarkedSquares.length);
 	playerTwoMarkedSquares.splice(0, playerTwoMarkedSquares.length);
 	allMarkedSquares.splice(0, allMarkedSquares.length);
-	console.log({ playerOneMarkedSquares, playerTwoMarkedSquares, allMarkedSquares });
-	newMatchSection.classList.add("delete-section");
-	playerTurnSection.classList.remove("delete-section");
+	drawManager = 0;
+	playerOneWinningMessage.innerText = "";
+	playerTwoWinningMessage.innerText = "";
+	newMatchSection.classList.add("hidden-section");
+	playerTurnSection.classList.remove("hidden-section");
 	playerOrder = 1;
 	switchPlayer();
 };
 
-function showPlayersSection() {
-	playerTurnSection.classList.add("delete-section");
-	newMatchSection.classList.add("delete-section");
-	squaresSection.classList.add("delete-section");
-	playersSection.classList.remove("delete-section");
+function showPlayersInputSection() {
+	playerTurnSection.classList.add("hidden-section");
+	newMatchSection.classList.add("hidden-section");
+	gameBoardSection.classList.add("hidden-section");
+	playersInputSection.classList.remove("hidden-section");
 };

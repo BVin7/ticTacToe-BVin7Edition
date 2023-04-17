@@ -27,9 +27,10 @@ body {
     height: 100dvh;
 }
 
-header, 
-footer {
-    text-align: center;
+header {
+    display: flex;
+    justify-content: center;
+    align-items: end;
 }
 
 h1 {
@@ -37,7 +38,6 @@ h1 {
 }
 
 h3 {
-    font-size: 2rem;
     color: var(--vanilla);
 }
 
@@ -50,30 +50,36 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    margin-top: 3rem;
 }
 
-.players-section {
+.players-input-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 3rem;
 }
 
-.players-section > label {
+.player-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.players-section-label {
     font-size: 2rem;
     color: var(--yellow);
-    margin: 2rem 0rem .5rem 0rem;
 }
 
-.players-section > input {
+.players-section-input {
     font-size: 1.5rem;
     text-align: center;
     border-radius: 1rem;
-    margin-bottom: 1.5rem;
     padding: .3rem;
 }
 
-.players-section > input:focus {
+.players-section-input:focus {
     outline: none;
     box-shadow: none;
 }
@@ -85,7 +91,6 @@ main {
     border-radius: 1.5rem;
     font-size: 2rem;
     padding: .5rem 1rem;
-    margin-top: 2rem;
 }
 
 .buttons:hover {
@@ -99,11 +104,34 @@ main {
 
 .player-turn-section {
     color: var(--yellow);
+    min-height: 64px;
 }
 
 .new-match-section {
     display: flex;
     gap: 3rem;
+}
+
+.gameboard-section {
+    display: flex;
+    gap: 7rem;
+}
+
+.player-score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+}
+
+.name,
+.winning-message {
+    font-size: 2rem;
+}
+
+.score {
+    font-size: 3.5rem;
+    color: var(--yellow);
 }
 
 .squares-section {
@@ -136,6 +164,6 @@ main {
     color: var(--black);
 }
 
-.delete-section {
+.hidden-section {
     display: none;
 }

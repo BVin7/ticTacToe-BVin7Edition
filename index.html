@@ -19,30 +19,46 @@
         <h3>BVin7 Edition</h3>
     </header>
     <main>
-        <section class="players-section">
-            <label for="player-one">Player 1 (Marker O)</label>
-            <input type="text" id="player-one">
-            <label for="player-two">Player 2 (Marker X)</label>
-            <input type="text" id="player-two">
+        <section class="players-input-section">
+            <div class="player-input-container">
+                <label for="player-one" class="players-section-label">Player 1 (Marker O)</label>
+                <input type="text" id="player-one" class="players-section-input">
+            </div>
+            <div class="player-input-container">
+                <label for="player-two" class="players-section-label">Player 2 (Marker X)</label>
+                <input type="text" id="player-two" class="players-section-input">
+            </div>
             <button type="button" id="submit-players-button" class="buttons">Start!</button>
         </section>
-        <section class="player-turn-section delete-section">
-            <h4 id="player-turn"></h4>
+        <section class="player-turn-section hidden-section">
+            <h4 id="player-turn-message"></h4>
         </section>
-        <section class="new-match-section delete-section">
+        <section class="new-match-section hidden-section">
             <button type="button" id="new-match-button" class="buttons">New match</button>
             <button type="button" id="new-players-button" class="buttons">New players</button>
         </section>
-        <section class="squares-section delete-section">
-            <button type="button" class="squares" id="square-one"></button>
-            <button type="button" class="squares" id="square-two"></button>
-            <button type="button" class="squares" id="square-three"></button>
-            <button type="button" class="squares" id="square-four"></button>
-            <button type="button" class="squares" id="square-five"></button>
-            <button type="button" class="squares" id="square-six"></button>
-            <button type="button" class="squares" id="square-seven"></button>
-            <button type="button" class="squares" id="square-eight"></button>
-            <button type="button" class="squares" id="square-nine"></button>
+        <section class="gameboard-section hidden-section">
+            <div class="player-score-container">
+                <span id="player-one-name" class="name"></span>
+                <span id="player-one-score" class="score">0</span>
+                <span id="player-one-winning-message" class="winning-message"></span>
+            </div>
+            <div class="squares-section">
+                <button type="button" class="squares" id="square-one"></button>
+                <button type="button" class="squares" id="square-two"></button>
+                <button type="button" class="squares" id="square-three"></button>
+                <button type="button" class="squares" id="square-four"></button>
+                <button type="button" class="squares" id="square-five"></button>
+                <button type="button" class="squares" id="square-six"></button>
+                <button type="button" class="squares" id="square-seven"></button>
+                <button type="button" class="squares" id="square-eight"></button>
+                <button type="button" class="squares" id="square-nine"></button>
+            </div>
+            <div class="player-score-container">
+                <span id="player-two-name" class="name"></span>
+                <span id="player-two-score" class="score">0</span>
+                <span id="player-two-winning-message" class="winning-message"></span>
+            </div>
         </section>
     </main>
 </body>
